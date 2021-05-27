@@ -19,7 +19,8 @@ def Main():
     with open(os.path.join(sys.path[0],args.variables), "r") as vars_:
         data = json.load(vars_)
 
-    nexthops = Checknexthop(data["all"]["routers"], args.username, args.password)
+    validity = Checknexthop(data["all"]["routers"], args.username, args.password)
+    setint = Setinterface(data["all"]["routers"], args.username, args.password, validity)
 
 def Checknexthop(devices, username, password):
     nexthops = []
@@ -45,8 +46,36 @@ def Checknexthop(devices, username, password):
         if validhop in nexthops:
             print("Valid next hop route exist")
         else:
-            print("No valid next hop exist")
-
+            return "invalid"
+            
+            
+def Setinterface(devices, username, password, valid):
+    if valid == "invalid":
+        for device in devices:
+            switch = device["mgmt_ip"]
+            interface = device["backupispint"]
+            if interface != "":
+                url = "{proto}://{user}:{passwd}@{switch}/command-api".format(proto="https", user=username, passwd=password, switch=switch)
+                try:
+                    connect = jsonrpclib.Server(url)
+                    response = connect.runCmds( 1, ["enable",
+                                                        "configure terminal",
+                                                        "interface " + str(interface),
+                                                        "no shutdown"])
+                except:
+                    print("Error connecting to device " + switch + " step 2")
+            else:
+                print("No backup ISP interface on " + str(switch))
+    else:
+        for device in devices:
+            switch = device["mgmt_ip"]
+            interface = device["backupispint"]
+            url = "{proto}://{user}:{passwd}@{switch}/command-api".format(proto="https", user=username, passwd=password, switch=switch)
+            try:
+                connect = jsonrpclib.Server(url)
+                response = connect.runCmds( 1, ["show interface " + str(interface)])
+            except:
+                print("Error connecting to device " + switch + " step 3")
     
 
 if __name__ == "__main__":
