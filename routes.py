@@ -41,14 +41,11 @@ def Checknexthop(devices, username, password):
             pprint.pprint("Error connecting to host " + switch)
     
     # Determine if the nexthops returned are valid        
-    if nexthops == []:
-        print("No default route received.")
-    else:
-        for validhop in valid:
-            if validhop in nexthops:
-                print("Valid next hop route exist")
-            else:
-                print("No valid next hop exist")
+    for validhop in valid:
+        if validhop in nexthops:
+            print("Valid next hop route exist")
+        else:
+            print("No valid next hop exist")
 
     
 
