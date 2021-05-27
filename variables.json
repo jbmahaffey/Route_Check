@@ -5,6 +5,7 @@
         "mgmt_ip": "172.16.2.3",
         "route_1": "0.0.0.0",
         "validnexthop": ["10.13.56.30"],
+        "_comment": "The following field should use the full interface name and start with a capital letter or be empty.",
         "backupispint": "Loopback3"
     },
     {
@@ -12,6 +13,7 @@
         "mgmt_ip": "172.16.2.1",
         "route_1": "0.0.0.0",
         "validnexthop": ["172.16.1.2", "172.16.1.10"],
+        "_comment": "The following field should use the full interface name and start with a capital letter or be empty.",
         "backupispint": ""
     }]
 

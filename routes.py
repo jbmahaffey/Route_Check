@@ -20,6 +20,7 @@ def Main():
         data = json.load(vars_)
 
     validity = Checknexthop(data["all"]["routers"], args.username, args.password)
+    print(validity)
     setint = Setinterface(data["all"]["routers"], args.username, args.password, validity)
 
 def Checknexthop(devices, username, password):
@@ -39,8 +40,8 @@ def Checknexthop(devices, username, password):
                 #pprint.pprint(route["nextHop"])
                 nexthops.append(route["nextHop"])
         except:
-            pprint.pprint("Error connecting to device " + switch)
-    print(nexthops)
+            pprint.pprint("Error connecting to device " + switch + "test2")
+ 
     # Determine if the nexthops returned are valid  
     l1 = []      
     for validhop in valid:
@@ -68,7 +69,7 @@ def Setinterface(devices, username, password, valid):
                                                         "interface " + str(interface),
                                                         "no shutdown"])
                 except:
-                    print("Error connecting to device " + switch)
+                    print("Error connecting to device " + switch + " test")
             else:
                 print("No backup ISP interface on " + str(switch))
     else:
