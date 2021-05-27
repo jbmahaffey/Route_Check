@@ -1,3 +1,7 @@
 INFO:root:Interfaces Already down
 INFO:root:Interfaces Already down
 INFO:root:Interfaces Already down
+INFO:root:Interfaces Already down172.16.2.3, no action required.
+INFO:root:Interfaces Already down 172.16.2.3, no action required.
+INFO:root:Interfaces Already down on device 172.16.2.3, no action required.
+2021-05-27 13:53:40 INFO     Interfaces Already down on device 172.16.2.3, no action required.

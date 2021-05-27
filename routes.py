@@ -17,8 +17,11 @@ def Main():
     parser.add_argument("--logging", default="INFO", help="Logging levels info, error, or debug")
     args = parser.parse_args()
 
+    logginglevel = args.logging
+    logginglevel.upper
+
     #Open logfile
-    logging.basicConfig(filename="routing_log.log", level=args.logging)
+    logging.basicConfig(format='%(asctime)s %(levelname)-8s %(message)s',filename="routing_log.log", level=logginglevel, datefmt='%Y-%m-%d %H:%M:%S')
 
     # Open JSON variable file
     with open(os.path.join(sys.path[0],args.variables), "r") as vars_:
@@ -44,7 +47,7 @@ def Checknexthop(devices, username, password):
                 logging.debug(route["nextHop"])
                 nexthops.append(route["nextHop"])
         except:
-            logging.error("Error connecting to device " + switch + "test2")
+            logging.error("Error connecting to device " + str(switch) + " unable to read show ip bgp.")
  
     # Determine if the nexthops returned are valid  
     l1 = []      
@@ -73,9 +76,9 @@ def Setinterface(devices, username, password, valid):
                                                         "interface " + str(interface),
                                                         "no shutdown"])
                 except:
-                    logging.error("Error connecting to device " + switch + " test")
+                    logging.error("Error connecting to device " + str(switch) + " to enable interface " + str(interface))
             else:
-                logging.info("No backup ISP interface on " + str(switch))
+                logging.info("No backup ISP interface on " + str(switch) + " to enable.")
     else:
         for device in devices:
             switch = device["mgmt_ip"]
@@ -91,13 +94,13 @@ def Setinterface(devices, username, password, valid):
                                                                 "configure",
                                                                 "interface " + str(interface),
                                                                 "shutdown"])
-                            logging.info("Interface shutdown")
+                            logging.info("Interface shutdown " + str(switch))
                         else:
-                            logging.info("Interfaces Already down")
+                            logging.info("Interfaces Already down on device " + str(switch) + ", no action required.")
                 except:
-                    logging.error("Error connecting to device " + switch)
+                    logging.error("Error connecting to device " + str(switch) + " to shutdown interface.")
             else:
-                logging.debug("No backup ISP interface on " + str(switch))
+                logging.debug("No backup ISP interface on " + str(switch) + " no action required.")
     
 
 if __name__ == "__main__":
