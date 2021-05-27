@@ -20,7 +20,6 @@ def Main():
         data = json.load(vars_)
 
     validity = Checknexthop(data["all"]["routers"], args.username, args.password)
-    print(validity)
     setint = Setinterface(data["all"]["routers"], args.username, args.password, validity)
 
 def Checknexthop(devices, username, password):
