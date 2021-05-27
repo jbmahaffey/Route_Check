@@ -14,14 +14,18 @@ def Main():
     parser.add_argument("--variables", default="variables.json", help="Location of necessary variables")
     parser.add_argument("--username", help="Switch username")
     parser.add_argument("--password", help="Switch password")
-    parser.add_argument("--logging", default="error", help="Logging levels info, error, or debug")
+    parser.add_argument("--logging", default="", help="Logging levels info, error, or debug")
     args = parser.parse_args()
 
-    logginglevel = args.logging
-    formattedlevel = logginglevel.upper()
+    #Only enable logging when necessary
+    if args.logging != "":
+        logginglevel = args.logging
+        formattedlevel = logginglevel.upper()
 
-    #Open logfile
-    logging.basicConfig(format='%(asctime)s %(levelname)-8s %(message)s',filename="routing_log.log", level=formattedlevel, datefmt='%Y-%m-%d %H:%M:%S')
+        #Open logfile
+        logging.basicConfig(format='%(asctime)s %(levelname)-8s %(message)s',filename="routing_log.log", level=formattedlevel, datefmt='%Y-%m-%d %H:%M:%S')
+    else:
+        ()
 
     # Open JSON variable file
     with open(os.path.join(sys.path[0],args.variables), "r") as vars_:
