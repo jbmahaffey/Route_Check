@@ -82,7 +82,15 @@ def Setinterface(devices, username, password, valid):
                 try:
                     connect = jsonrpclib.Server(url)
                     response = connect.runCmds( 1, ["show interfaces " + str(interface)])
-                    pprint.pprint(response)
+                    for iface in response:
+                        if iface["interfaces"][interface]["lineProtocolStatus"] == "up":
+                            shutdown = connect.runCmds(1, ["enable",
+                                                                "configure",
+                                                                "interface " + str(interface),
+                                                                "shutdown"])
+                            print("Interface shutdown")
+                        else:
+                            print("Interfaces Already down")
                 except:
                     print("Error connecting to device " + switch + " step 3")
             else:

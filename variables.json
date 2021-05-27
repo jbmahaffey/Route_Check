@@ -5,7 +5,7 @@
         "mgmt_ip": "172.16.2.3",
         "route_1": "0.0.0.0",
         "validnexthop": ["10.13.56.30"],
-        "backupispint": "loopback3"
+        "backupispint": "Loopback3"
     },
     {
         "hostname": "spine2",
