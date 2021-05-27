@@ -6,6 +6,7 @@ import argparse
 import ssl
 import pprint
 import argparse
+import logging
 ssl._create_default_https_context = ssl._create_unverified_context
 
 def Main():
@@ -13,7 +14,11 @@ def Main():
     parser.add_argument("--variables", default="variables.json", help="Location of necessary variables")
     parser.add_argument("--username", help="Switch username")
     parser.add_argument("--password", help="Switch password")
+    parser.add_argument("--logging", default="INFO", help="Logging levels info, error, or debug")
     args = parser.parse_args()
+
+    #Open logfile
+    logging.basicConfig(filename="routing_log.log", level=args.logging)
 
     # Open JSON variable file
     with open(os.path.join(sys.path[0],args.variables), "r") as vars_:
@@ -36,10 +41,10 @@ def Checknexthop(devices, username, password):
             connect = jsonrpclib.Server(url)
             response = connect.runCmds( 1, ["show ip bgp " + str(route)])
             for route in response[0]["vrfs"]["default"]["bgpRouteEntries"]["0.0.0.0/0"]["bgpRoutePaths"]:
-                #pprint.pprint(route["nextHop"])
+                logging.debug(route["nextHop"])
                 nexthops.append(route["nextHop"])
         except:
-            pprint.pprint("Error connecting to device " + switch + "test2")
+            logging.error("Error connecting to device " + switch + "test2")
  
     # Determine if the nexthops returned are valid  
     l1 = []      
@@ -68,9 +73,9 @@ def Setinterface(devices, username, password, valid):
                                                         "interface " + str(interface),
                                                         "no shutdown"])
                 except:
-                    print("Error connecting to device " + switch + " test")
+                    logging.error("Error connecting to device " + switch + " test")
             else:
-                print("No backup ISP interface on " + str(switch))
+                logging.info("No backup ISP interface on " + str(switch))
     else:
         for device in devices:
             switch = device["mgmt_ip"]
@@ -86,13 +91,13 @@ def Setinterface(devices, username, password, valid):
                                                                 "configure",
                                                                 "interface " + str(interface),
                                                                 "shutdown"])
-                            print("Interface shutdown")
+                            logging.info("Interface shutdown")
                         else:
-                            print("Interfaces Already down")
+                            logging.info("Interfaces Already down")
                 except:
-                    print("Error connecting to device " + switch)
+                    logging.error("Error connecting to device " + switch)
             else:
-                print("No backup ISP interface on " + str(switch))
+                logging.debug("No backup ISP interface on " + str(switch))
     
 
 if __name__ == "__main__":
