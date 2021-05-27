@@ -12,7 +12,7 @@ def Main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--variables", default="variables.json", help="Location of necessary variables")
     parser.add_argument("--username", help="Switch username")
-    parser.add_argument("--password", default="M@h@ffey87", help="Switch password")
+    parser.add_argument("--password", help="Switch password")
     args = parser.parse_args()
 
     # Open JSON variable file
@@ -20,7 +20,6 @@ def Main():
         data = json.load(vars_)
 
     validity = Checknexthop(data["all"]["routers"], args.username, args.password)
-    print(validity)
     setint = Setinterface(data["all"]["routers"], args.username, args.password, validity)
 
 def Checknexthop(devices, username, password):
@@ -40,14 +39,13 @@ def Checknexthop(devices, username, password):
                 #pprint.pprint(route["nextHop"])
                 nexthops.append(route["nextHop"])
         except:
-            pprint.pprint("Error connecting to host " + switch)
+            pprint.pprint("Error connecting to device " + switch)
     print(nexthops)
     # Determine if the nexthops returned are valid  
     l1 = []      
     for validhop in valid:
         if validhop in nexthops:
             l1.append("valid")
-            print("Valid next hop route exist")
         else:
             l1.append("invalid")
     if "valid" in l1:
@@ -70,7 +68,7 @@ def Setinterface(devices, username, password, valid):
                                                         "interface " + str(interface),
                                                         "no shutdown"])
                 except:
-                    print("Error connecting to device " + switch + " step 2")
+                    print("Error connecting to device " + switch)
             else:
                 print("No backup ISP interface on " + str(switch))
     else:
@@ -92,7 +90,7 @@ def Setinterface(devices, username, password, valid):
                         else:
                             print("Interfaces Already down")
                 except:
-                    print("Error connecting to device " + switch + " step 3")
+                    print("Error connecting to device " + switch)
             else:
                 print("No backup ISP interface on " + str(switch))
     
