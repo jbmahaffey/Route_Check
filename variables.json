@@ -1,0 +1,19 @@
+{
+"all":{
+    "routers":[{
+        "hostname": "spine1",
+        "mgmt_ip": "172.16.2.3",
+        "route_1": "0.0.0.0",
+        "validnexthop": ["10.13.56.2"],
+        "backupispint": "eth4"
+    },
+    {
+        "hostname": "spine2",
+        "mgmt_ip": "172.16.2.1",
+        "route_1": "0.0.0.0",
+        "validnexthop": ["172.16.1.2", "172.16.1.1"],
+        "backupispint": ""
+    }]
+
+    }   
+}
