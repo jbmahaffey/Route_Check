@@ -32,6 +32,7 @@ def Main():
         data = json.load(vars_)
 
     validity = Checknexthop(data["all"]["routers"], args.username, args.password)
+    logging.debug("%s next hops", validity)
     setint = Setinterface(data["all"]["routers"], args.username, args.password, validity)
 
 def Checknexthop(devices, username, password):
@@ -48,11 +49,11 @@ def Checknexthop(devices, username, password):
             connect = jsonrpclib.Server(url)
             response = connect.runCmds( 1, ["show ip bgp " + str(route)])
             for route in response[0]["vrfs"]["default"]["bgpRouteEntries"]["0.0.0.0/0"]["bgpRoutePaths"]:
-                logging.debug(route["nextHop"])
                 nexthops.append(route["nextHop"])
         except:
             logging.error("Error connecting to device " + str(switch) + " unable to read show ip bgp.")
- 
+    logging.debug("Current next hops are %s", nexthops)
+    logging.debug("Valid next hops are %s", valid)
     # Determine if the nexthops returned are valid  
     l1 = []      
     for validhop in valid:

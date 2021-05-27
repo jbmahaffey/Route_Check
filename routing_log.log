@@ -1,1 +1,37 @@
 2021-05-27 14:12:03 INFO     Interfaces Already down on device 172.16.2.3, no action required.
+2021-05-27 14:26:18 INFO     Interfaces Already down on device 172.16.2.3, no action required.
+2021-05-27 14:26:30 DEBUG    ['10.13.56.2'] are in the current next hops
+2021-05-27 14:26:30 DEBUG    ['10.13.56.2', '10.10.10.0'] are in the current next hops
+2021-05-27 14:26:30 DEBUG    ['10.13.56.2', '10.10.10.0', '11.11.10.0'] are in the current next hops
+2021-05-27 14:26:30 DEBUG    ['10.13.56.2', '10.10.10.0', '11.11.10.0', '172.16.1.2'] are in the current next hops
+2021-05-27 14:26:30 DEBUG    ['10.13.56.2', '10.10.10.0', '11.11.10.0', '172.16.1.2', '172.16.1.1'] are in the current next hops
+2021-05-27 14:26:30 DEBUG    %s next hops
+2021-05-27 14:26:31 INFO     Interfaces Already down on device 172.16.2.3, no action required.
+2021-05-27 14:26:31 DEBUG    No backup ISP interface on 172.16.2.1 no action required.
+2021-05-27 14:27:43 DEBUG    ['10.13.56.2'] are in the current next hops
+2021-05-27 14:27:43 DEBUG    ['10.13.56.2', '10.10.10.0', '11.11.10.0', '172.16.1.2', '172.16.1.1'] are in the current next hops
+2021-05-27 14:27:43 DEBUG    %s next hops
+2021-05-27 14:27:43 INFO     Interfaces Already down on device 172.16.2.3, no action required.
+2021-05-27 14:27:43 DEBUG    No backup ISP interface on 172.16.2.1 no action required.
+2021-05-27 14:28:10 DEBUG    ['10.13.56.2'] are in the current next hops
+2021-05-27 14:28:10 DEBUG    ['10.13.56.2', '10.10.10.0', '11.11.10.0', '172.16.1.2', '172.16.1.1'] are in the current next hops
+2021-05-27 14:28:10 DEBUG    valid next hops
+2021-05-27 14:28:10 INFO     Interfaces Already down on device 172.16.2.3, no action required.
+2021-05-27 14:28:10 DEBUG    No backup ISP interface on 172.16.2.1 no action required.
+2021-05-27 14:28:35 DEBUG    ['10.13.56.2'] are in the current next hops
+2021-05-27 14:28:35 DEBUG    ['10.13.56.2', '10.10.10.0', '11.11.10.0', '172.16.1.2', '172.16.1.1'] are in the current next hops
+2021-05-27 14:28:35 DEBUG    invalid next hops
+2021-05-27 14:28:35 INFO     No backup ISP interface on 172.16.2.1 to enable.
+2021-05-27 14:32:35 DEBUG    ['10.13.56.2', '10.10.10.0', '11.11.10.0', '172.16.1.2', '172.16.1.1'] are in the current next hops
+2021-05-27 14:32:35 DEBUG    Valid next hops are ['10.13.56.30', '172.16.1.20', '172.16.1.10']
+2021-05-27 14:32:35 DEBUG    invalid next hops
+2021-05-27 14:32:35 INFO     No backup ISP interface on 172.16.2.1 to enable.
+2021-05-27 14:33:10 DEBUG    Current next hops are ['10.13.56.2', '10.10.10.0', '11.11.10.0', '172.16.1.2', '172.16.1.1']
+2021-05-27 14:33:10 DEBUG    Valid next hops are ['10.13.56.30', '172.16.1.20', '172.16.1.10']
+2021-05-27 14:33:10 DEBUG    invalid next hops
+2021-05-27 14:33:10 INFO     No backup ISP interface on 172.16.2.1 to enable.
+2021-05-27 14:33:50 DEBUG    Current next hops are ['10.13.56.2', '10.10.10.0', '11.11.10.0', '172.16.1.2', '172.16.1.1']
+2021-05-27 14:33:50 DEBUG    Valid next hops are ['10.13.56.30', '172.16.1.2', '172.16.1.10']
+2021-05-27 14:33:50 DEBUG    valid next hops
+2021-05-27 14:33:51 INFO     Interface shutdown on device 172.16.2.3
+2021-05-27 14:33:51 DEBUG    No backup ISP interface on 172.16.2.1 no action required.
