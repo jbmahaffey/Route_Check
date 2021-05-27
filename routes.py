@@ -20,6 +20,7 @@ def Main():
         data = json.load(vars_)
 
     validity = Checknexthop(data["all"]["routers"], args.username, args.password)
+    print(validity)
     setint = Setinterface(data["all"]["routers"], args.username, args.password, validity)
 
 def Checknexthop(devices, username, password):
@@ -40,13 +41,19 @@ def Checknexthop(devices, username, password):
                 nexthops.append(route["nextHop"])
         except:
             pprint.pprint("Error connecting to host " + switch)
-    
-    # Determine if the nexthops returned are valid        
+    print(nexthops)
+    # Determine if the nexthops returned are valid  
+    l1 = []      
     for validhop in valid:
         if validhop in nexthops:
+            l1.append("valid")
             print("Valid next hop route exist")
         else:
-            return "invalid"
+            l1.append("invalid")
+    if "valid" in l1:
+        return "valid"
+    else:
+        return "invalid"
             
             
 def Setinterface(devices, username, password, valid):
@@ -70,12 +77,16 @@ def Setinterface(devices, username, password, valid):
         for device in devices:
             switch = device["mgmt_ip"]
             interface = device["backupispint"]
-            url = "{proto}://{user}:{passwd}@{switch}/command-api".format(proto="https", user=username, passwd=password, switch=switch)
-            try:
-                connect = jsonrpclib.Server(url)
-                response = connect.runCmds( 1, ["show interface " + str(interface)])
-            except:
-                print("Error connecting to device " + switch + " step 3")
+            if interface != "":
+                url = "{proto}://{user}:{passwd}@{switch}/command-api".format(proto="https", user=username, passwd=password, switch=switch)
+                try:
+                    connect = jsonrpclib.Server(url)
+                    response = connect.runCmds( 1, ["show interfaces " + str(interface)])
+                    pprint.pprint(response)
+                except:
+                    print("Error connecting to device " + switch + " step 3")
+            else:
+                print("No backup ISP interface on " + str(switch))
     
 
 if __name__ == "__main__":
