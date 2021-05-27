@@ -14,14 +14,14 @@ def Main():
     parser.add_argument("--variables", default="variables.json", help="Location of necessary variables")
     parser.add_argument("--username", help="Switch username")
     parser.add_argument("--password", help="Switch password")
-    parser.add_argument("--logging", default="INFO", help="Logging levels info, error, or debug")
+    parser.add_argument("--logging", default="error", help="Logging levels info, error, or debug")
     args = parser.parse_args()
 
     logginglevel = args.logging
-    logginglevel.upper
+    formattedlevel = logginglevel.upper()
 
     #Open logfile
-    logging.basicConfig(format='%(asctime)s %(levelname)-8s %(message)s',filename="routing_log.log", level=logginglevel, datefmt='%Y-%m-%d %H:%M:%S')
+    logging.basicConfig(format='%(asctime)s %(levelname)-8s %(message)s',filename="routing_log.log", level=formattedlevel, datefmt='%Y-%m-%d %H:%M:%S')
 
     # Open JSON variable file
     with open(os.path.join(sys.path[0],args.variables), "r") as vars_:
@@ -94,7 +94,7 @@ def Setinterface(devices, username, password, valid):
                                                                 "configure",
                                                                 "interface " + str(interface),
                                                                 "shutdown"])
-                            logging.info("Interface shutdown " + str(switch))
+                            logging.info("Interface shutdown on device " + str(switch))
                         else:
                             logging.info("Interfaces Already down on device " + str(switch) + ", no action required.")
                 except:

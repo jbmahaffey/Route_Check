@@ -5,3 +5,10 @@ INFO:root:Interfaces Already down172.16.2.3, no action required.
 INFO:root:Interfaces Already down 172.16.2.3, no action required.
 INFO:root:Interfaces Already down on device 172.16.2.3, no action required.
 2021-05-27 13:53:40 INFO     Interfaces Already down on device 172.16.2.3, no action required.
+2021-05-27 13:54:24 INFO     Interfaces Already down on device 172.16.2.3, no action required.
+2021-05-27 13:54:42 INFO     No backup ISP interface on 172.16.2.1 to enable.
+2021-05-27 13:55:25 INFO     Interface shutdown 172.16.2.3
+2021-05-27 13:56:00 INFO     Interfaces Already down on device 172.16.2.3, no action required.
+2021-05-27 13:56:18 INFO     No backup ISP interface on 172.16.2.1 to enable.
+2021-05-27 13:56:45 INFO     Interface shutdown on device 172.16.2.3
+2021-05-27 14:03:38 INFO     Interfaces Already down on device 172.16.2.3, no action required.
