@@ -1,5 +1,7 @@
 # Route_Check
 
+This script is intended to check BGP for a specific prefix and check that prefix against valid next hops.  If no valid next hop exist or the route does not exist then script will enable an interface that should be connected to a tertiary ISP.  If a valid next hop does exist the script will ensure that the connection to the tertiary ISP is administratively down.  
+
 Variables should be updated in the variables JSON file.
 
 Variables explained below:
