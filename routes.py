@@ -4,7 +4,6 @@ import json
 import jsonrpclib
 import argparse
 import ssl
-import pprint
 import argparse
 import logging
 ssl._create_default_https_context = ssl._create_unverified_context
