@@ -35,3 +35,8 @@
 2021-05-27 14:33:50 DEBUG    valid next hops
 2021-05-27 14:33:51 INFO     Interface shutdown on device 172.16.2.3
 2021-05-27 14:33:51 DEBUG    No backup ISP interface on 172.16.2.1 no action required.
+2021-05-27 17:30:17 DEBUG    Current next hops are ['10.13.56.2', '10.10.10.0', '11.11.10.0', '172.16.1.2', '172.16.1.1']
+2021-05-27 17:30:17 DEBUG    Valid next hops are ['10.13.56.30', '172.16.1.2', '172.16.1.10']
+2021-05-27 17:30:17 DEBUG    valid next hops
+2021-05-27 17:30:17 INFO     Interfaces Already down on device 172.16.2.3, no action required.
+2021-05-27 17:30:17 DEBUG    No backup ISP interface on 172.16.2.1 no action required.
