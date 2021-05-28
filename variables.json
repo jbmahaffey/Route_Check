@@ -12,7 +12,7 @@
         "hostname": "spine2",
         "mgmt_ip": "172.16.2.1",
         "route_1": "0.0.0.0",
-        "validnexthop": ["172.16.1.2", "172.16.1.10"],
+        "validnexthop": ["172.16.1.20", "172.16.1.10"],
         "_comment": "The following field should use the full interface name and start with a capital letter or be empty.",
         "backupispint": ""
     }]

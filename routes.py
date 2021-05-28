@@ -106,6 +106,6 @@ def Setinterface(devices, username, password, valid):
             else:
                 logging.debug("No backup ISP interface on " + str(switch) + " no action required.")
     
-
+#Run the main function
 if __name__ == "__main__":
    Main()
