@@ -3,7 +3,7 @@ import os
 import json
 import argparse
 from scapy.all import *
-from routes import Main
+from routes import Mainroute
 
 def Main():
 
@@ -33,9 +33,14 @@ def Main():
     
     for hops in validhops:
         if hops in currenthops:
-            ()
+            badhops = False
         else:
-            execute_=Main
+            badhops = True
+    
+    if badhops == True:
+        Mainroute()
+    else:
+        ()
 
 #Run the main function
 if __name__ == "__main__":

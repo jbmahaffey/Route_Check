@@ -8,7 +8,7 @@ import argparse
 import logging
 ssl._create_default_https_context = ssl._create_unverified_context
 
-def Main():
+def Mainroute():
     parser = argparse.ArgumentParser()
     parser.add_argument("--variables", default="variables.json", help="Location of necessary variables")
     parser.add_argument("--username", help="Switch username")
