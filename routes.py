@@ -137,4 +137,4 @@ def Setinterface(devices, username, password, valid):
     
 #Run the main function
 if __name__ == "__main__":
-   Mainroute()
+   Main()
