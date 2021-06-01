@@ -15,7 +15,7 @@ def Main():
     parser.add_argument("--username", help="Switch username")
     parser.add_argument("--password", help="Switch password")
     parser.add_argument("--logging", default="", help="Logging levels info, error, or debug")
-    parser.add_argument("--check", default="8.8.8.8", help="IP address you want to trace path to.")
+    parser.add_argument("--check", default="8.8.8.8", help="IP address you want to trace path to")
     args = parser.parse_args()
 
     # Only enable logging when necessary
