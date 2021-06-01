@@ -6,22 +6,24 @@ import argparse
 import ssl
 import argparse
 import logging
+from scapy.all import *
 ssl._create_default_https_context = ssl._create_unverified_context
 
-def Mainroute():
+def Main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--variables", default="variables.json", help="Location of necessary variables")
     parser.add_argument("--username", help="Switch username")
     parser.add_argument("--password", help="Switch password")
     parser.add_argument("--logging", default="", help="Logging levels info, error, or debug")
+    parser.add_argument("--check", default="8.8.8.8", help="IP address you want to trace path to.")
     args = parser.parse_args()
 
-    #Only enable logging when necessary
+    # Only enable logging when necessary
     if args.logging != "":
         logginglevel = args.logging
         formattedlevel = logginglevel.upper()
 
-        #Open logfile
+        # Open logfile
         logging.basicConfig(format='%(asctime)s %(levelname)-8s %(message)s',filename="routing_log.log", level=formattedlevel, datefmt='%Y-%m-%d %H:%M:%S')
     else:
         ()
@@ -30,10 +32,37 @@ def Mainroute():
     with open(os.path.join(sys.path[0],args.variables), "r") as vars_:
         data = json.load(vars_)
 
-    validity = Checknexthop(data["all"]["routers"], args.username, args.password)
-    logging.debug("%s next hops", validity)
-    setint = Setinterface(data["all"]["routers"], args.username, args.password, validity)
+    # Check network path using ping and if next hops are not valid then execute check BGP 
+    validhops = []
+    devices = data["all"]["routers"]
+    for device in devices:
+        validhops.extend(device["validnexthop"])
 
+    hostname = args.check
+    currenthops = []
+    for i in range(1, 8):
+        pkt = IP(dst=hostname, ttl=i) / UDP(dport=33434)
+        # Send the packet and get a reply
+        reply = sr1(pkt, timeout=5, verbose=0)
+        if reply is None:
+            currenthops.append("None")
+        else:
+            currenthops.append(reply.src)
+    
+    for hops in validhops:
+        if hops in currenthops:
+            badhops = False
+            break
+        else:
+            badhops = True
+    
+    if badhops == True:
+        validity = Checknexthop(data["all"]["routers"], args.username, args.password)
+        logging.debug("%s next hops", validity)
+        setint = Setinterface(data["all"]["routers"], args.username, args.password, validity)
+    else:
+        sys.exit()
+        
 def Checknexthop(devices, username, password):
     nexthops = []
     valid = []

@@ -4,7 +4,7 @@
         "hostname": "spine1",
         "mgmt_ip": "172.16.2.3",
         "route_1": "0.0.0.0",
-        "validnexthop": ["10.13.56.30"],
+        "validnexthop": ["192.168.1.1"],
         "_comment": "The following field should use the full interface name and start with a capital letter or be empty.",
         "backupispint": "Loopback3"
     },
