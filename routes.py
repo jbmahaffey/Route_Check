@@ -43,7 +43,7 @@ def Main():
     for i in range(1, 8):
         pkt = IP(dst=hostname, ttl=i) / UDP(dport=33434)
         # Send the packet and get a reply
-        reply = sr1(pkt, timeout=5, verbose=0)
+        reply = sr1(pkt, timeout=3, verbose=0)
         if reply is None:
             currenthops.append("None")
         else:
