@@ -1,5 +1,7 @@
 # Route_Check
 
+The setup.sh script will install the required python3 modules as defined in the requirements.txt document.  Please run this script first to ensure that all required modules are installed.
+
 The first function in this script will trace the network path and compare against a manually defined valid path in the variables JSON file
 ***(Important note on the trace is that the traced path originates from the device running the script).***
  If the traced path has a valid IP in it then it will stop the script as the path is valid.  If there is no matching IP in the traced path then it will continue and login to the device and check show ip bgp for valid next hops by comparing those to the manually defined next hops in the variables file.  If no valid next hop exist or the prefix does not exist then script will enable an interface that should be connected to a tertiary ISP.  If a valid next hop does exist the script will ensure that the connection to the tertiary ISP is administratively down.  
