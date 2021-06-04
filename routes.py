@@ -6,9 +6,8 @@ import json
 import jsonrpclib
 import argparse
 import ssl
-import argparse
 import logging
-from scapy.all import *
+from scapy.all import IP, UDP, sr1
 ssl._create_default_https_context = ssl._create_unverified_context
 
 def Main():
