@@ -13,8 +13,8 @@ ssl._create_default_https_context = ssl._create_unverified_context
 def Main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--variables", default="variables.json", help="Location of necessary variables")
-    parser.add_argument("--username", help="Switch username")
-    parser.add_argument("--password", help="Switch password")
+    parser.add_argument("--username", help="Switch username", required=True)
+    parser.add_argument("--password", help="Switch password", required=True)
     parser.add_argument("--logging", default="", help="Logging levels info, error, or debug")
     parser.add_argument("--check", default="8.8.8.8", help="IP address you want to trace path to")
     args = parser.parse_args()
